@@ -1,0 +1,70 @@
+<div class="container mt-5">
+    <!-- Page Title -->
+    <div class="row mb-4">
+      <div class="col-12 text-center">
+        <h2 class="text-primary font-weight-bold">Reports</h2>
+        <p class="text-muted">Select a report and download it in your preferred format</p>
+      </div>
+    </div>
+  
+    <!-- Reports Cards Row -->
+    <div class="row justify-content-center">
+      <!-- Financial Report Card -->
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-lg border-light rounded">
+          <div class="card-body text-center">
+            <h5 class="card-title text-primary mb-4">Financial Report</h5>
+            <div class="dropdown">
+              <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Select Format
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" (click)="downloadData('json')">Download as JSON</a></li>
+                <li><a class="dropdown-item" (click)="downloadData('csv')">Download as CSV</a></li>
+                <li><a class="dropdown-item" (click)="downloadAsPDF()">Download as PDF</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Sales Report Card -->
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-lg border-light rounded">
+          <div class="card-body text-center">
+            <h5 class="card-title text-primary mb-4">Sales Report</h5>
+            <div class="dropdown">
+              <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                Select Format
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                <li><a class="dropdown-item" href="#">Download as JSON</a></li>
+                <li><a class="dropdown-item" href="#">Download as CSV</a></li>
+                <li><a class="dropdown-item" href="#">Download as PDF</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Customer Report Card -->
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-lg border-light rounded">
+          <div class="card-body text-center">
+            <h5 class="card-title text-primary mb-4">Customer Report</h5>
+            <div class="dropdown">
+              <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false">
+                Select Format
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
+                <li><a class="dropdown-item" href="#">Download as JSON</a></li>
+                <li><a class="dropdown-item" href="#">Download as CSV</a></li>
+                <li><a class="dropdown-item" href="#">Download as PDF</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

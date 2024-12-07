@@ -1,0 +1,23 @@
+/* Section for full viewport height with flexbox for centering */
+.vh-100 {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Container and row styling */
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 56.25rem; /* max-width: 900px equivalent */
+  }
+  

@@ -1,0 +1,23 @@
+<nav class="custom-nav">
+    <ul class="menu">
+      <li>
+        <a [routerLink]="['onboard-executive']" 
+           [ngClass]="getClassOn()" 
+           (mouseover)="linkClick('onboard')" 
+           class="menu-link">
+          <i class="fa fa-home"></i>
+          <span>Onboard Executive</span>
+        </a>
+      </li>
+      <!-- <li>
+        <a [routerLink]="['manage-executive']" 
+           [ngClass]="getClassMa()" 
+           (mouseover)="linkClick('manage')" 
+           class="menu-link">
+          <i class="fa fa-edit"></i>
+          <span>Manage Executive</span>
+        </a>
+      </li> -->
+    </ul>
+  </nav>
+  

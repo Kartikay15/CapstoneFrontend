@@ -1,0 +1,94 @@
+<div class="container mt-2">
+    <h2 class="text-center text-primary mb-4">Evaluation Records</h2>
+
+    <div *ngIf="evaluations.length > 0; else noData" class="table-container">
+        <table class="table table-striped table-hover table-bordered">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th>Evaluation ID</th>
+                    <th>Car Model</th>
+                    <th>Status</th>
+                    <th>Verdict</th>
+                    <th>Valuation</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let evaluation of evaluations"
+                    [ngClass]="{
+                        'table-success': evaluation.evalstatus === 'DONE',
+                        'table-warning': evaluation.evalstatus === 'PROCESSING',
+                        'table-danger': evaluation.evalstatus === 'PENDING'
+                    }">
+                    <td class="text-center">{{ evaluation.id }}</td>
+                    <td class="text-center">{{ evaluation.car.car_model }}</td>
+                    <td class="text-center">
+                        <span class="badge" [ngClass]="{
+                            'bg-success': evaluation.evalstatus === 'DONE',
+                            'bg-warning text-dark': evaluation.evalstatus === 'PROCESSING',
+                            'bg-danger': evaluation.evalstatus === 'PENDING'
+                        }">
+                            {{ evaluation.evalstatus }}
+                        </span>
+                    </td>
+                    <td class="text-center">
+                        <span class="badge p-2" [ngClass]="{
+                            'bg-success': evaluation.evalVerdict === 'PASS',
+                            'bg-danger': evaluation.evalVerdict === 'FAIL',
+                            'bg-secondary': !evaluation.evalVerdict
+                        }">
+                            {{ evaluation.evalVerdict || 'N/A' }}
+                        </span>
+                    </td>
+                    <td class="text-end">{{ evaluation.valuation || 'N/A' }}</td>
+                    <td class="text-center">
+                        <button *ngIf="evaluation.evalstatus === 'PENDING'" class="btn btn-primary btn-sm" (click)="assignEvaluation(evaluation)">
+                            Assign to Expert
+                        </button>
+                        <button class="btn btn-info btn-sm" (click)="viewCarDetails(evaluation.car)">
+                            View Car Details
+                        </button>
+                        <span *ngIf="evaluation.evalstatus !== 'PENDING'" class="text-muted">
+                            No Actions Available
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <ng-template #noData>
+        <div class="alert alert-info text-center" role="alert">
+            No evaluations available at the moment.
+        </div>
+    </ng-template>
+
+    <!-- Modal for displaying car details -->
+    <div class="modal" tabindex="-1" role="dialog" [ngClass]="{'d-block': carDetailsVisible}">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Car Details</h5>
+                    <button type="button" class="close" (click)="closeCarDetails()">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div *ngIf="selectedCar">
+                        <p><strong>Car Model:</strong> {{ selectedCar.car_model }}</p>
+                        <p><strong>Purchase Year:</strong> {{ selectedCar.purchase_year }}</p>
+                        <p><strong>Fuel Type:</strong> {{ selectedCar.fuel_type }}</p>
+                        <p><strong>Body Type:</strong> {{ selectedCar.body_type }}</p>
+                        <p><strong>Condition:</strong> {{ selectedCar.car_condition }}</p>
+                        <p><strong>Price:</strong> ₹{{ selectedCar.price}}</p>
+                        <p><strong>Platform:</strong> {{ selectedCar.platform }}</p>
+                        
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" (click)="closeCarDetails()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

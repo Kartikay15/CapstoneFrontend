@@ -1,1 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+    --blue-500: #3498db;
+    --yellow-500: #f1c40f;
+    --green-500: #2ecc71;
+    --blue-400: #2980b9;
+    --yellow-400: #f39c12;
+    --green-400: #27ae60;
+    --text-color: #333333;  /* Text color for the legend */
+}

@@ -1,0 +1,70 @@
+<section class="vh-100 d-flex align-items-center justify-content-center" style="background-color: #f8f9fa;">
+    <div class="container py-5">
+      <div class="row justify-content-center align-items-center bg-white rounded p-4" style="max-width: 900px;">
+        
+        <div class="col-lg-6 d-none d-lg-block text-center">
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+            class="img-fluid rounded" alt="Car Illustration">
+        </div>
+  
+        
+        <div class="col-lg-6">
+          <h3 class="mb-4 text-center fw-bold text-primary">Welcome to QuickRides</h3>
+          <p class="text-muted text-center">Login to manage your car rentals and resales with ease.</p>
+  
+          
+          <div class="alert alert-primary mb-4" *ngIf="successMsg">
+            {{ successMsg }}
+          </div>
+          <div class="alert alert-danger mb-4" *ngIf="errorMsg">
+            {{ errorMsg }}
+          </div>
+          <div class="alert alert-danger mb-4" *ngIf="msg">
+            {{ msg }}
+          </div>
+  
+          
+          <div class="p-3">
+            
+            <div class="form-outline mb-4">
+              <input type="text" id="usernameInput" class="form-control form-control-lg"
+                placeholder="Enter your username" [(ngModel)]="username" />
+              <label class="form-label" for="usernameInput">Username</label>
+            </div>
+  
+            
+            <div class="form-outline mb-4">
+              <input type="password" id="passwordInput" class="form-control form-control-lg"
+                placeholder="Enter your password" [(ngModel)]="password" />
+              <label class="form-label" for="passwordInput">Password</label>
+            </div>
+  
+            
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="rememberMe" />
+                <label class="form-check-label" for="rememberMe">
+                  Remember me
+                </label>
+              </div>
+              <a href="#!" class="text-primary">Forgot password?</a>
+            </div>
+  
+            
+            <div class="text-center">
+              <button type="button" class="btn btn-primary btn-lg w-100" (click)="onLogin()">
+                Login
+              </button>
+            </div>
+  
+            
+            <div class="d-flex justify-content-center align-items-center mt-4">
+              <p class="small mb-0 me-2">Don't have an account?</p>
+              <div class="link-danger fw-bold cursor-pointer" (click)="navigateToSignUp()">Register</div>
+            </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  

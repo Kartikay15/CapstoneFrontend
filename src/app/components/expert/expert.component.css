@@ -1,0 +1,155 @@
+/* Global body styling */
+body {
+    background: linear-gradient(to right, #4facfe, #00f2fe);
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;  /* Full viewport height */
+    padding: 10px;  /* Reduced padding */
+  }
+  
+  /* Main container */
+  .container {
+    background: #fff;
+    border-radius: 10px;  /* Slightly smaller border radius */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;  /* Adjusted padding */
+    max-width: 1200px;  /* Increased max-width to make use of available space */
+    width: 100%;
+    margin-top: 30px;
+  }
+  
+  /* Header section */
+  .header {
+    text-align: center;
+    margin-bottom: 20px;  /* Slightly increased margin for better spacing */
+  }
+  
+  .header h1 {
+    color: #333;
+    font-size: 1.8rem;  /* Slightly increased font size */
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;  /* Increased margin */
+  }
+  
+  .header p {
+    color: #666;
+    font-size: 1rem;  /* Slightly larger font size for readability */
+    font-weight: 400;
+    margin-bottom: 15px;
+  }
+  
+  /* Table container to allow scrolling */
+  .table-container {
+    max-height: 70vh;  /* Table container height remains as is */
+    overflow-y: auto;  /* Vertical scrolling */
+    border-radius: 8px; 
+    position: relative;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+    margin-top: 20px;  /* Slightly increased margin */
+  }
+  
+  /* Table styling */
+  table {
+    width: 100%;  /* Ensures the table occupies full available width */
+    border-radius: 8px;  /* Slightly smaller radius */
+    border-collapse: separate;
+    overflow: hidden;
+  }
+  
+  /* Header styling */
+  thead {
+    position: sticky; 
+    top: 0;
+    background-color: #343a40;
+    color: #fff;
+    z-index: 1;
+    box-shadow: 0 1px 1px -1px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Table cells */
+  th,
+  td {
+    padding: 8px 12px;  /* Increased padding for better readability */
+    border: 1px solid #dee2e6;
+    text-align: left;
+    font-size: 0.9rem;  /* Slightly larger font size */
+  }
+  
+  th {
+    font-weight: bold;
+  }
+  
+  tbody tr {
+    transition: background-color 0.2s ease;
+  }
+  
+  tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #f1f1f1;
+  }
+  
+  tbody tr:hover {
+    background-color: #e2e6ea; /* Hover effect */
+  }
+  
+  /* Rounded corners for the last row */
+  tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 8px;
+  }
+  
+  tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 8px;
+  }
+  
+  /* Form elements inside table */
+  td select,
+  td input {
+    width: 100%;
+    padding: 6px 10px;  /* Adjusted padding */
+    font-size: 0.9rem;  /* Slightly larger font size */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  td select:focus,
+  td input:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  /* Button styling */
+  .btn {
+    min-width: 90px;  /* Increased button width */
+    font-size: 0.85rem;  /* Slightly larger font size */
+    padding: 6px 12px;  /* Adjusted padding */
+    border-radius: 5px;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-success {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .btn-success:hover {
+    background-color: #218838;
+  }
+  
+  .btn-secondary {
+    background-color: #6c757d;
+    color: white;
+  }
+  
+  .btn-secondary:hover {
+    background-color: #5a6268;
+  }
+  

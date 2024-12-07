@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="header">
+    <h1>Expert Dashboard</h1>
+    <p>Manage and update evaluations in the "Processing" state</p>
+  </div>
+
+  <!-- Table container to allow scrolling -->
+  <div class="table-container">
+    <div *ngIf="evaluations.length > 0">
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>Evaluation ID</th>
+            <th>Car Model</th>
+            <th>Fuel Type</th>
+            <th>Car Condition</th>
+            <th>Price</th>
+            <th>Verdict</th>
+            <th>Valuation</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let evaluation of evaluations">
+            <tr *ngIf="evaluation.evalstatus === 'PROCESSING'">
+              <td>{{ evaluation.id }}</td>
+              <td>{{ evaluation.car.car_model }}</td>
+              <td>{{ evaluation.car.fuel_type }}</td>
+              <td>{{ evaluation.car.car_condition }}</td>
+              <td>{{ evaluation.car.price  }}</td>
+              <td>
+                <select class="form-select" [(ngModel)]="evaluation.evalVerdict">
+                  <option value="PASS">PASS</option>
+                  <option value="FAIL">FAIL</option>
+                </select>
+              </td>
+              <td>
+                <span>{{ evaluation.valuation }}</span>
+              </td>
+              <td>
+                <button
+                  class="btn btn-primary btn-sm me-2"
+                  (click)="viewCarDetails(evaluation.car)"
+                >
+                  View Car Details
+                </button>
+                <button
+                  class="btn btn-success btn-sm me-2"
+                  (click)="updateEvaluation(evaluation)"
+                >
+                  Update
+                </button>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Car Details Section: Displays the selected car details -->
+  <div *ngIf="selectedCar" class="car-details-section mt-4">
+    <h3>Car Details</h3>
+    <div class="row">
+      <div class="col-md-6">
+        <p><strong>Car Model:</strong> {{ selectedCar?.car_model }}</p>
+        <p><strong>Purchase Year:</strong> {{ selectedCar?.purchase_year }}</p>
+        <p><strong>Fuel Type:</strong> {{ selectedCar?.fuel_type }}</p>
+        <p><strong>Car Condition:</strong> {{ selectedCar?.car_condition }}</p>
+        <p><strong>Price:</strong> {{ selectedCar?.price }}</p>
+      </div>
+      <div class="col-md-6">
+        <p><strong>Platform:</strong> {{ selectedCar?.platform }}</p>
+      </div>
+    </div>
+    <button class="btn btn-secondary mt-2" (click)="resetCarDetails()">Close</button>
+  </div>
+</div>

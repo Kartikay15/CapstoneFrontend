@@ -1,0 +1,22 @@
+<div class="d-flex justify-content-center" style="flex-wrap: wrap; gap: 120px;">
+    <!-- First Chart - Bookings Distribution -->
+    <div class="card d-flex justify-content-center" style="width: 450px; height: 500px;">
+      <div class="card-header text-center">
+        <h5>Bookings Distribution</h5>
+      </div>
+      <div class="card-body">
+        <p-chart type="doughnut" [data]="data" [options]="options" style="width: 100%; height: 100%; background-color: transparent; border: none;"></p-chart>
+      </div>
+    </div>
+    
+    <!-- Second Chart - Revenue Distribution -->
+    <div class="card d-flex justify-content-center" style="width: 450px; height: 500px;">
+      <div class="card-header text-center">
+        <h5>Revenue Distribution</h5>
+      </div>
+      <div class="card-body">
+        <p-chart type="doughnut" [data]="data2" [options]="options2" style="width: 100%; height: 100%; background-color: transparent; border: none;"></p-chart>
+      </div>
+    </div>
+  </div>
+  

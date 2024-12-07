@@ -1,0 +1,99 @@
+<div class="container mt-5">
+    <!-- Overview Section -->
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <div class="card text-center shadow-sm border-0">
+          <div class="card-body">
+            <h5 class="card-title text-primary">Total Revenue</h5>
+            <h3 class="text-success fw-bold">{{ financials.totalRevenue | currency }}</h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card text-center shadow-sm border-0">
+          <div class="card-body">
+            <h5 class="card-title text-primary">Net Profit</h5>
+            <h3 class="text-info fw-bold">{{ financials.netProfit | currency }}</h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card text-center shadow-sm border-0">
+          <div class="card-body">
+            <h5 class="card-title text-primary">Cash Flow Status</h5>
+            <h3 class="text-warning fw-bold">{{ financials.cashFlow | currency }}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Revenue and Expense Breakdown Section -->
+    <div class="row">
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm border-0">
+          <div class="card-header bg-primary text-white">Revenue Breakdown</div>
+          <div class="card-body">
+            <!-- Smaller Pie Chart -->
+            <div class="chart-container" style="width: 50%; margin: auto;">
+              <p-chart type="pie" [data]="revenueBreakdownChart" [options]="chartOptions"></p-chart>
+            </div>
+            <!-- Textual Data -->
+            <table class="table table-sm mt-3">
+              <thead>
+                <tr>
+                  <th>Source</th>
+                  <th>Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of financials.revenueSources">
+                  <td>{{ item.source }}</td>
+                  <td>{{ item.amount | currency }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm border-0">
+          <div class="card-header bg-primary text-white">Expense Breakdown</div>
+          <div class="card-body">
+            <!-- Smaller Pie Chart -->
+            <div class="chart-container" style="width: 50%; margin: auto;">
+              <p-chart type="pie" [data]="expenseBreakdownChart" [options]="chartOptions"></p-chart>
+            </div>
+            <!-- Textual Data -->
+            <table class="table table-sm mt-3">
+              <thead>
+                <tr>
+                  <th>Category</th>
+                  <th>Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of financials.expenseCategories">
+                  <td>{{ item.category }}</td>
+                  <td>{{ item.amount | currency }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Financial Trends Section -->
+    <div class="row">
+      <div class="col-md-12 mb-4">
+        <div class="card shadow-sm border-0">
+          <div class="card-header bg-primary text-white">Financial Trends</div>
+          <div class="card-body">
+            <p-chart type="line" [data]="financialTrendsChart" [options]="chartOptions"></p-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

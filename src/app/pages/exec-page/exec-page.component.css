@@ -1,0 +1,29 @@
+.app-container {
+    display: grid;
+    grid-template-columns: 1fr 6fr; 
+    gap: 10px; 
+  }
+  
+  .sidebar {
+    grid-column: 1; 
+  }
+  
+  .content {
+    grid-column: 2; 
+  }
+  
+  
+  @media (max-width: 768px) {
+    .app-container {
+      grid-template-columns: 1fr; 
+    }
+  
+    .sidebar {
+      grid-column: 1; 
+    }
+  
+    .content {
+      grid-column: 1; 
+    }
+  }
+  

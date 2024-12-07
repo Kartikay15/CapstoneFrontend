@@ -1,0 +1,55 @@
+<div class="container">
+  <h2 class="my-4 text-center text-primary">Customer Complaints</h2>
+  <div
+    class="table-responsive shadow rounded bg-white"
+    style="max-height: 75vh; overflow-y: auto;"
+  >
+    <table class="table table-hover table-striped align-middle mb-0">
+      <thead class="table-primary text-center">
+        <tr>
+          <th>#</th>
+          <th>Car ID</th>
+          <th>Complaint</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let complain of complains; let i = index" class="text-center">
+          <td>{{ i + 1 }}</td>
+          <td>{{ complain.carID }}</td>
+          <td class="text-start">{{ complain.complainText }}</td>
+          <td>
+            <span
+              class="badge"
+              [ngClass]="{
+                'bg-warning text-dark': complain.status === 'UNADDRESSED',
+                'bg-success': complain.status === 'RESOLVED'
+              }"
+              >{{ complain.status }}</span
+            >
+          </td>
+          <td>
+            <!-- Resolve Complaint Button -->
+            <button
+              class="btn btn-outline-success btn-sm"
+              [disabled]="complain.status === 'RESOLVED'"
+              (click)="resolveComplain(i)"
+            >
+              <i class="bi bi-check-circle me-1"></i> Resolve
+            </button>
+            
+            <!-- Unlist Car Button -->
+            <button
+              class="btn btn-outline-danger btn-sm ms-2"
+              [disabled]="complain.status === 'RESOLVED'"
+              (click)="unlistCar(i)"
+            >
+              <i class="bi bi-x-circle me-1"></i> Unlist Car
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

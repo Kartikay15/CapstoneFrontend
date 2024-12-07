@@ -1,0 +1,12 @@
+.card {
+    border: none !important; /* Ensure no border around the card */
+    padding: 0 !important;   /* Ensure no padding around the chart */
+    background-color: transparent !important; /* Ensure the card has no background */
+}
+
+p-chart {
+    background-color: transparent !important; /* Make chart background transparent */
+    border: none !important; /* Remove any border around the chart */
+    width: 100% !important;   /* Ensure it takes full width of the container */
+    height: 100% !important;  /* Ensure it takes full height of the container */
+}

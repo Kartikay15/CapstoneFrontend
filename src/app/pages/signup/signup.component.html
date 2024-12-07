@@ -1,0 +1,59 @@
+<section class="vh-100 d-flex align-items-center justify-content-center" style="background-color: #f8f9fa;">
+    <div class="container py-5">
+      <div class="row justify-content-center align-items-center bg-white rounded p-4" style="max-width: 900px;">
+        
+        <div class="col-lg-6 d-none d-lg-block text-center">
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+            class="img-fluid rounded" alt="Car Illustration">
+        </div>
+  
+        
+        <div class="col-lg-6">
+          <h3 class="mb-4 text-center fw-bold text-primary">Create Your QuickRides Account</h3>
+          <p class="text-muted text-center">Sign up to start managing car rentals and resales.</p>
+  
+          
+          <div class="alert alert-primary mb-4" *ngIf="successMsg">
+            {{ successMsg }}
+            <div class="btn btn-link text-primary fw-bold mt-2" (click) = "navigateToLogin()">Go to Login</div>
+
+          </div>
+          <div class="alert alert-danger mb-4" *ngIf="errorMsg">
+            {{ errorMsg }}
+          </div>
+  
+          
+          <div class="p-3">
+            
+            <div class="form-outline mb-4">
+              <input type="text"  class="form-control "
+                placeholder="Enter your full name" [(ngModel)]="name" />
+              <label class="form-label" >Full Name</label>
+            </div>
+  
+            
+            <div class="form-outline mb-4">
+              <input type="text"  class="form-control "
+                placeholder="Choose a username" [(ngModel)]="username" />
+              <label class="form-label" >Username</label>
+            </div>
+  
+            
+            <div class="form-outline mb-4">
+              <input type="password"  class="form-control "
+                placeholder="Create a password" [(ngModel)]="password" />
+              <label class="form-label">Password</label>
+            </div>
+  
+            
+            <div class="text-center">
+              <button type="button" class="btn btn-primary btn-lg w-100" (click)="onSignUp()">
+                Sign Up
+              </button>
+            </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  

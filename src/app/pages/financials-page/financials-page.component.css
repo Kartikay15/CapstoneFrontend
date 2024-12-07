@@ -1,0 +1,26 @@
+.card {
+    border-radius: 10px;
+  }
+  
+  .card-header {
+    font-weight: bold;
+  }
+  
+  .list-group-item {
+    border: none;
+    padding: 10px 15px;
+  }
+  
+  .list-group-item:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .list-group-item:nth-child(odd) {
+    background-color: #ffffff;
+  }
+  
+  .table-responsive {
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+  

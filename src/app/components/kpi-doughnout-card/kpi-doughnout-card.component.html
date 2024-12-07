@@ -1,0 +1,37 @@
+<div class="row d-flex flex-wrap justify-content-center mt-3">
+    <!-- Resell Inventory Card -->
+    <div class="col-md-4 grid-margin stretch-card mb-3 d-flex justify-content-center">
+        <div class="card card-rounded shadow-sm flex-fill bg-light">
+            <div class="card-body pb-0 text-center">
+                <h4 class="card-title card-title-dash text-primary mb-4">Resell Inventory</h4>
+                <div class="row align-items-center">
+                    <div class="col-sm-4">
+                        <p class="status-summary-light-white mb-2">Percentage Sold</p>
+                        <h2 class="text-info fw-bold">{{ percentage2 }}%</h2>
+                    </div>
+                    <div class="col-sm-8 d-flex justify-content-center">
+                        <app-small-doughnut-resell></app-small-doughnut-resell>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rental Inventory Card -->
+    <div class="col-md-4 grid-margin stretch-card mb-3 d-flex justify-content-center">
+        <div class="card card-rounded shadow-sm flex-fill bg-light">
+            <div class="card-body pb-0 text-center">
+                <h4 class="card-title card-title-dash text-primary mb-4">Rental Inventory</h4>
+                <div class="row align-items-center">
+                    <div class="col-sm-4">
+                        <p class="status-summary-light-white mb-2">Percentage Rented</p>
+                        <h2 class="text-info fw-bold">{{ percentage }}%</h2>
+                    </div>
+                    <div class="col-sm-8 d-flex justify-content-center">
+                        <app-small-doughnut></app-small-doughnut>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
