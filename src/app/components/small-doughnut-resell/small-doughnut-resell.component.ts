@@ -17,7 +17,7 @@ export class SmallDoughnutResellComponent {
   options: any;
   
 
-  constructor(private kpiService: KpiService) {}
+  //constructor(private kpiService: KpiService) {}
 
   ngOnInit() {
     this.fetchKpis(); // Fetch KPI values
@@ -26,20 +26,12 @@ export class SmallDoughnutResellComponent {
 
   // Fetch KPIs and update chart data dynamically
   fetchKpis(): void {
-    this.kpiService.getKpis().subscribe({
-      next: (data) => {
-        
-         this.resellInventory = data.find((kpi: any) => kpi.name === 'resellInventory')?.value || 0;
-         this.carsSold = data.find((kpi: any) => kpi.name === 'carsSold')?.value || 0;
-         this.listedCars = data.find((kpi: any) => kpi.name === 'listedCars')?.value || 0;
+    this.resellInventory =JSON.parse(localStorage.getItem('resellInventory') || '0');
+         this.carsSold = JSON.parse(localStorage.getItem('carsSold') || '0');
+         this.listedCars = JSON.parse(localStorage.getItem('listedCars') || '0');
          console.log(this.resellInventory, this.carsSold, this.listedCars);
        
         this.updateChartData();
-      },
-      error: (err) => {
-        console.error('Error fetching KPIs:', err);
-      },
-    });
   }
 
   // Initialize chart options

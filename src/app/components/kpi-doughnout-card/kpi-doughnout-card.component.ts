@@ -26,20 +26,12 @@ export class KpiDoughnoutCardComponent {
 
   // Fetch KPIs and extract revenue details
   fetchKpis(): void {
-    this.kpiService.getKpis().subscribe({
-      next: (data) => {
-        
-        this.rentalInventory = data.find((kpi: any) => kpi.name === 'rentalInventory')?.value || 0;
-        this.carRentedOut = data.find((kpi: any) => kpi.name === 'carRentedOut')?.value || 0;
-        this.carsSold = data.find((kpi: any) => kpi.name === 'carsSold')?.value || 0;
-        this.listedCars = data.find((kpi: any) => kpi.name === 'listedCars')?.value || 0;
-        this.resellInventory = data.find((kpi: any) => kpi.name === 'resellInventory')?.value || 0;
+    this.rentalInventory = JSON.parse(localStorage.getItem('rentalInventory') || '0');
+        this.carRentedOut = JSON.parse(localStorage.getItem('carRentedOut') || '0');
+        this.carsSold =JSON.parse(localStorage.getItem('carsSold') || '0');
+        this.listedCars = JSON.parse(localStorage.getItem('listedCars') || '0');
+        this.resellInventory = JSON.parse(localStorage.getItem('resellInventory') || '0');
         this.percentage = Math.round((this.carRentedOut / (this.rentalInventory+this.carRentedOut) * 100 + Number.EPSILON) * 10) / 10;
         this.percentage2 = Math.round((this.carsSold / (this.resellInventory+this.carsSold+this.listedCars) * 100 + Number.EPSILON) * 10) / 10;
-      },
-      error: (err) => {
-        console.error('Error fetching KPIs:', err);
-      },
-    });
   }
 }

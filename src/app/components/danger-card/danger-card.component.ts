@@ -14,24 +14,13 @@ export class DangerCardComponent implements OnInit {
   resellRevenue: number = 0;
   totalRevenue: number = 0;
 
-  constructor(private kpiService: KpiService) {}
+  //constructor(private kpiService: KpiService) {}
 
   ngOnInit(): void {
-    this.fetchKpis();
-  }
-
-  // Fetch KPIs and extract revenue details
-  fetchKpis(): void {
-    this.kpiService.getKpis().subscribe({
-      next: (data) => {
-        this.rentalRevenue = data.find((kpi: any) => kpi.name === 'revRental')?.value || 0;
-        this.resellRevenue = data.find((kpi: any) => kpi.name === 'revResell')?.value || 0;
-        this.totalRevenue = this.rentalRevenue + this.resellRevenue;
-        console.log(this.rentalRevenue, this.resellRevenue, this.totalRevenue);
-      },
-      error: (err) => {
-        console.error('Error fetching KPIs:', err);
-      },
-    });
+    const rentalRevenueValue = localStorage.getItem('revRental');
+    this.rentalRevenue = rentalRevenueValue ? JSON.parse(rentalRevenueValue) : 0;
+    const resellRevenueValue = localStorage.getItem('revResell');
+    this.resellRevenue = resellRevenueValue ? JSON.parse(resellRevenueValue) : 0;
+    this.totalRevenue = this.rentalRevenue + this.resellRevenue;
   }
 }

@@ -16,7 +16,7 @@ export class SmallDoughnutComponent {cancelledBookings: number = 0;
     options: any;
     
   
-    constructor(private kpiService: KpiService) {}
+    //constructor(private kpiService: KpiService) {}
   
     ngOnInit() {
       this.fetchKpis(); // Fetch KPI values
@@ -25,19 +25,11 @@ export class SmallDoughnutComponent {cancelledBookings: number = 0;
   
     // Fetch KPIs and update chart data dynamically
     fetchKpis(): void {
-      this.kpiService.getKpis().subscribe({
-        next: (data) => {
-          
-           this.rentalInventory = data.find((kpi: any) => kpi.name === 'rentalInventory')?.value || 0;
-           this.carRentedOut = data.find((kpi: any) => kpi.name === 'carRentedOut')?.value || 0;
-          
-         
-          this.updateChartData();
-        },
-        error: (err) => {
-          console.error('Error fetching KPIs:', err);
-        },
-      });
+        this.rentalInventory = JSON.parse(localStorage.getItem('rentalInventory') || '0');
+        this.carRentedOut = JSON.parse(localStorage.getItem('carRentedOut') || '0');
+       
+      
+       this.updateChartData();
     }
   
     // Initialize chart options

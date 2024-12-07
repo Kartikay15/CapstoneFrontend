@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ChartModule } from 'primeng/chart';
 import { KpiService } from '../../service/kpi.service'; // Import KpiService
 
@@ -8,28 +8,22 @@ import { KpiService } from '../../service/kpi.service'; // Import KpiService
   templateUrl: './bookings.component.html',
   styleUrls: ['./bookings.component.css']
 })
-export class BookingsComponent {
+export class BookingsComponent implements OnInit {
   data: any;
   options: any;
 
   // Inject KpiService into the constructor
-  constructor(private kpiService: KpiService) {}
+  //constructor(private kpiService: KpiService) {}
 
   // Fetch KPIs and update the chart data
   fetchKpis(): void {
-    this.kpiService.getKpis().subscribe({
-      next: (data) => {
-        // Get hiredBookings and cancelBookings for December
-        const hiredBookings = data.find((kpi: any) => kpi.name === 'hiredBookings')?.value || 0;
-        const cancelBookings = data.find((kpi: any) => kpi.name === 'cancelBookings')?.value || 0;
+   
+        const hiredBookings = JSON.parse(localStorage.getItem('hiredBookings') || '0');
+        const cancelBookings = JSON.parse(localStorage.getItem('cancelBookings') || '0');
 
         // Update the chart data for December
         this.updateChartData(hiredBookings, cancelBookings);
-      },
-      error: (err) => {
-        console.error('Error fetching KPIs:', err);
-      },
-    });
+     
   }
 
   updateChartData(hiredBookings: number, cancelBookings: number): void {

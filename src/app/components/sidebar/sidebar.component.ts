@@ -10,11 +10,7 @@ import { Router, RouterLink } from '@angular/router';
 export class SidebarComponent {
   constructor(private router: Router) {}
     logout(){
-      alert("You have successfully logged out"); 
-      
-      setTimeout(() => {
         localStorage.clear();
         this.router.navigateByUrl('login');
-      }, 2000);
     }
 }

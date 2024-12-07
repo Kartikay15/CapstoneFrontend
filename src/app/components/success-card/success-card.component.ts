@@ -12,24 +12,29 @@ export class SuccessCardComponent {
   hiredBookings: number = 0;
   total: number = 0;
 
-  constructor(private kpiService: KpiService) {}
+  //constructor(private kpiService: KpiService) {}
 
   ngOnInit(): void {
-    this.fetchKpis();
+    //this.fetchKpis();
+    //const rentalRevenueValue = localStorage.getItem('revRental');
+    //this.rentalRevenue = rentalRevenueValue ? JSON.parse(rentalRevenueValue) : 0;
+    this.cancelledBookings = JSON.parse(localStorage.getItem('cancelBookings') || '0');
+    this.hiredBookings = JSON.parse(localStorage.getItem('hiredBookings') || '0');
+    this.total = this.cancelledBookings + this.hiredBookings;
   }
 
   // Fetch KPIs and extract revenue details
-  fetchKpis(): void {
-    this.kpiService.getKpis().subscribe({
-      next: (data) => {
-        this.cancelledBookings = data.find((kpi: any) => kpi.name === 'cancelBookings')?.value || 0;
-        this.hiredBookings = data.find((kpi: any) => kpi.name === 'hiredBookings')?.value || 0;
-        this.total = this.cancelledBookings + this.hiredBookings;
-        //console.log(this.rentalRevenue, this.resellRevenue, this.totalRevenue);
-      },
-      error: (err) => {
-        console.error('Error fetching KPIs:', err);
-      },
-    });
-  }
+  // fetchKpis(): void {
+  //   this.kpiService.getKpis().subscribe({
+  //     next: (data) => {
+  //       this.cancelledBookings = data.find((kpi: any) => kpi.name === 'cancelBookings')?.value || 0;
+  //       this.hiredBookings = data.find((kpi: any) => kpi.name === 'hiredBookings')?.value || 0;
+  //       this.total = this.cancelledBookings + this.hiredBookings;
+  //       //console.log(this.rentalRevenue, this.resellRevenue, this.totalRevenue);
+  //     },
+  //     error: (err) => {
+  //       console.error('Error fetching KPIs:', err);
+  //     },
+  //   });
+  // }
 }

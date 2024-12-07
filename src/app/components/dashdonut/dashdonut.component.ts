@@ -28,24 +28,16 @@ export class DashdonutComponent implements OnInit {
 
   // Fetch KPIs and update chart data dynamically
   fetchKpis(): void {
-    this.kpiService.getKpis().subscribe({
-      next: (data) => {
-        this.cancelledBookings =
-          data.find((kpi: any) => kpi.name === 'cancelBookings')?.value || 0;
+    this.cancelledBookings =
+          JSON.parse(localStorage.getItem('cancelBookings') || '0');
         this.hiredBookings =
-          data.find((kpi: any) => kpi.name === 'hiredBookings')?.value || 0;
+          JSON.parse(localStorage.getItem('hiredBookings') || '0');
           this.revRental =
-          data.find((kpi: any) => kpi.name === 'revRental')?.value || 0;
+          JSON.parse(localStorage.getItem('revRental') || '0');
           this.revResell =
-          data.find((kpi: any) => kpi.name === 'revResell')?.value || 0;
-        
+          JSON.parse(localStorage.getItem('revResell') || '0');
         // Update the chart data dynamically
         this.updateChartData();
-      },
-      error: (err) => {
-        console.error('Error fetching KPIs:', err);
-      },
-    });
   }
 
   // Initialize chart options

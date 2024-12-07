@@ -7,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
+  name: string = 'Guest'; // Default value
 
+  ngOnInit(): void {
+    // Fetch the user's name from localStorage
+    const storedName = localStorage.getItem('name');
+    if (storedName) {
+      this.name = storedName;
+    }
+  }
 }

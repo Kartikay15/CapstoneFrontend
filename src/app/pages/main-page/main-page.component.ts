@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SidebarComponent } from '../../components/sidebar/sidebar.component';
 import { HeaderComponent } from '../../components/header/header.component';
 import { RouterOutlet } from '@angular/router';
 import { DashboardComponent } from "../../components/dashboard/dashboard.component";
+import { KpiService } from '../../service/kpi.service';
 
 @Component({
   selector: 'app-main-page',
@@ -10,6 +11,24 @@ import { DashboardComponent } from "../../components/dashboard/dashboard.compone
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.css'
 })
-export class MainPageComponent {
+export class MainPageComponent implements OnInit {
+
+  constructor(private kpiService: KpiService) {}
+
+  ngOnInit(): void {
+    this.fetchKpis();
+  }
+
+  // Fetch KPIs and extract revenue details
+  fetchKpis(): void {
+    this.kpiService.getKpis().subscribe({
+      next: (data) => {
+        console.log('Got Data');
+      },
+      error: (err) => {
+        console.error('Error fetching KPIs:', err);
+      },
+    });
+  }
 
 }

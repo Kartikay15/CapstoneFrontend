@@ -43,6 +43,7 @@ export class LoginComponent {
             localStorage.setItem('token', token); 
             localStorage.setItem('username', data.username);
             localStorage.setItem('name', data.name);
+            localStorage.setItem('role', data.role);
             let role = data.role; 
             switch(role){
 

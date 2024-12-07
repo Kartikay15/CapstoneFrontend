@@ -15,7 +15,7 @@ export class KpiTobbarComponent {
   users: number = 0;
   ratings: number = 0;
 
-  constructor(private kpiService: KpiService) {}
+  //constructor(private kpiService: KpiService) {}
 
   ngOnInit(): void {
     this.fetchKpis();
@@ -23,17 +23,10 @@ export class KpiTobbarComponent {
 
   // Fetch KPIs and extract revenue details
   fetchKpis(): void {
-    this.kpiService.getKpis().subscribe({
-      next: (data) => {
-        this.totalRentals = data.find((kpi: any) => kpi.name === 'totalRentals')?.value || 0;
-        this.carsRentedOut = data.find((kpi: any) => kpi.name === 'carRentedOut')?.value || 0;
-        this.carsSold = data.find((kpi: any) => kpi.name === 'carsSold')?.value || 0;
-        this.users = data.find((kpi: any) => kpi.name === 'users')?.value || 0;
-        this.ratings = data.find((kpi: any) => kpi.name === 'ratings')?.value || 0;
-      },
-      error: (err) => {
-        console.error('Error fetching KPIs:', err);
-      },
-    });
+    this.totalRentals = JSON.parse(localStorage.getItem('totalRentals') || '0');
+    this.carsRentedOut = JSON.parse(localStorage.getItem('carRentedOut') || '0');
+    this.carsSold =JSON.parse(localStorage.getItem('carsSold') || '0');
+    this.users = JSON.parse(localStorage.getItem('users') || '0');
+    this.ratings = JSON.parse(localStorage.getItem('ratings') || '0');
   }
 }

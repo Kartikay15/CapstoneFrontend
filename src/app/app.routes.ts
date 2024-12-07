@@ -15,6 +15,7 @@ import { ComplainsComponent } from './pages/complains/complains.component';
 import { FinancialsPageComponent } from './pages/financials-page/financials-page.component';
 import { ReportsComponent } from './pages/reports/reports.component';
 import { CarListingsComponent } from './pages/car-listings/car-listings.component';
+import { AuthGuardService } from './service/auth-guard.service';
 
 export const routes: Routes = [
     {
@@ -27,7 +28,7 @@ export const routes: Routes = [
         path: 'exec', component : ExecPageComponent
     },
     {
-        path: 'main', component : MainPageComponent, children: [
+        path: 'main', component : MainPageComponent, canActivate: [AuthGuardService], children: [
             {
                 path:'dash', component : DashboardComponent
             },
@@ -57,18 +58,9 @@ export const routes: Routes = [
     {
         path: 'sign-up', component : SignupComponent
     },
-    // {
-    //     path:'admin', component : AdminPageComponent ,children:[
-    //         {
-    //             path:'onboard-executive', component : AdminExecutiveOnboardComponent
-    //         },
-    //         {
-    //             //path:'manage-executive', component : AdminExecutiveListComponent
-    //         }
-    //     ]
-    // }
+    
     {
-        path:'admin', component : AdminPageComponent, children: [
+        path:'admin', component : AdminPageComponent, canActivate: [AuthGuardService], children: [
             {
                 path:'onboard-executive', component : AdminExecutiveOnboardComponent
             },

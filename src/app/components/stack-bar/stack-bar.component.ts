@@ -18,18 +18,11 @@ export class StackBarComponent {
 
     // Fetch KPIs and extract revenue details
     fetchKpis(): void {
-        this.kpiService.getKpis().subscribe({
-            next: (data) => {
-                this.rentalRevenue = data.find((kpi: any) => kpi.name === 'revRental')?.value || 0;
-                this.resellRevenue = data.find((kpi: any) => kpi.name === 'revResell')?.value || 0;
+        this.rentalRevenue = JSON.parse(localStorage.getItem('revRental') || '0');
+                this.resellRevenue = JSON.parse(localStorage.getItem('revResell') || '0');
 
                 // Update chart data after fetching KPIs
                 this.updateChartData();
-            },
-            error: (err) => {
-                console.error('Error fetching KPIs:', err);
-            },
-        });
     }
 
     updateChartData(): void {
