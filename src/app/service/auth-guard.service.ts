@@ -16,7 +16,16 @@ export class AuthGuardService implements CanActivate {
     {
        path: 'main',
         role:'EXECUTIVE' 
-    }]
+    },
+    {
+      path: 'seller',
+      role:'SELLER'
+    },
+  {
+    path: 'expert',
+    role:'EXPERT'
+  }]
+
     constructor(private router:Router){
         this.token = localStorage.getItem('token');
         this.username = localStorage.getItem('username');
@@ -50,7 +59,3 @@ export class AuthGuardService implements CanActivate {
 
 }
 
-/**
- * Router gives u an interface, CanActivate 
- * 
- */

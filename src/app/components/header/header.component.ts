@@ -7,10 +7,10 @@ import { Component } from '@angular/core';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  name: string = 'Guest'; // Default value
+  name: string = 'Guest'; 
 
   ngOnInit(): void {
-    // Fetch the user's name from localStorage
+    // user name exists in local storage
     const storedName = localStorage.getItem('name');
     if (storedName) {
       this.name = storedName;

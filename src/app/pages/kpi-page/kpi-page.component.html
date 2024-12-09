@@ -1,9 +1,7 @@
-<div class="container mt-1">
+<!-- <div class="container mt-1">
     <app-kpi-tobbar></app-kpi-tobbar>
-    <div class="text-end mt-3">
-        <p class="text-muted small m-0">* Compared to the previous week.</p>
-    </div>
-    <div class="d-flex justify-content-between mt-4">
+    
+    <div  class="d-flex justify-content-between mt-4">
         <div class="flex-grow-1 me-3" style="flex: 0 0 50%;">
             <app-stack-bar></app-stack-bar>
         </div>
@@ -14,4 +12,24 @@
         </div>
     </div>
     <app-kpi-doughnout-card></app-kpi-doughnout-card>
-</div>
+</div> -->
+
+<div class="container mt-1">
+    <app-kpi-tobbar></app-kpi-tobbar>
+  
+    <!-- Conditional rendering based on kpiDataLoaded -->
+    <div *ngIf="kpiDataLoaded">
+      <div class="d-flex justify-content-between mt-4">
+        <div class="flex-grow-1 me-3" style="flex: 0 0 50%;">
+          <app-stack-bar></app-stack-bar>
+        </div>
+        <div style="flex: 0 0 49%;">
+          <div class="row flex-grow">
+            <app-bookings></app-bookings>
+          </div>
+        </div>
+      </div>
+      <app-kpi-doughnout-card></app-kpi-doughnout-card>
+    </div>
+  </div>
+  

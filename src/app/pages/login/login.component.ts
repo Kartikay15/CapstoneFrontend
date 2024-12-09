@@ -55,12 +55,16 @@ export class LoginComponent {
                 this.router.navigateByUrl("/admin");
                 break; 
 
+              case 'EXPERT':
+                this.router.navigateByUrl("/expert");
+                break;
+
               case 'BUYER':
                 console.log('i vl take you to buyer screen');
                 break; 
 
               case 'SELLER':
-                console.log('i vl take you to seller screen')
+                this.router.navigateByUrl("/seller");
                 break;
               
               case 'LESSOR':

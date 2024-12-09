@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
   private apiUrl = 'http://localhost:8081/users/roles';
-  public rolesData: { [key: string]: number } = {}; // Variable to store roles data
+  public rolesData: { [key: string]: number } = {}; 
 
   constructor(private http: HttpClient) {}
 
@@ -29,9 +29,6 @@ export class UserService {
     );
   }
 
-  /**
-   * Get the stored roles data.
-   */
   getRolesData(): { [key: string]: number } {
     return this.rolesData;
   }

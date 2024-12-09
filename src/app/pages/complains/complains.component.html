@@ -1,5 +1,37 @@
 <div class="container">
   <h2 class="my-4 text-center text-primary">Customer Complaints</h2>
+
+  <!-- Filter Checkboxes -->
+  <div class="d-flex align-items-center gap-3 mb-3" style="margin-left: 0;">
+    <label class="form-check-label d-flex align-items-center">
+      <input
+        type="checkbox"
+        [(ngModel)]="filterOptions.all"
+        (change)="applyFilter()"
+        class="form-check-input me-2"
+      />
+      All
+    </label>
+    <label class="form-check-label d-flex align-items-center">
+      <input
+        type="checkbox"
+        [(ngModel)]="filterOptions.unadressed"
+        (change)="applyFilter()"
+        class="form-check-input me-2"
+      />
+      Unadressed
+    </label>
+    <label class="form-check-label d-flex align-items-center">
+      <input
+        type="checkbox"
+        [(ngModel)]="filterOptions.resolved"
+        (change)="applyFilter()"
+        class="form-check-input me-2"
+      />
+      Resolved
+    </label>
+  </div>
+
   <div
     class="table-responsive shadow rounded bg-white"
     style="max-height: 75vh; overflow-y: auto;"
@@ -8,46 +40,49 @@
       <thead class="table-primary text-center">
         <tr>
           <th>#</th>
-          <th>Car ID</th>
+          <th>Car Model</th>
           <th>Complaint</th>
           <th>Status</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let complain of complains; let i = index" class="text-center">
+        <!-- Dynamically populate complaints list -->
+        <tr
+          *ngFor="let complain of filteredComplains; let i = index"
+          class="text-center"
+        >
           <td>{{ i + 1 }}</td>
-          <td>{{ complain.carID }}</td>
-          <td class="text-start">{{ complain.complainText }}</td>
+          <td>{{ complain?.car?.car_model ?? 'N/A' }}</td>
+          <td class="text-start">{{ complain?.complain ?? 'N/A' }}</td>
           <td>
+            <!-- Conditional styling based on complaint status -->
             <span
               class="badge"
               [ngClass]="{
-                'bg-warning text-dark': complain.status === 'UNADDRESSED',
-                'bg-success': complain.status === 'RESOLVED'
+                'bg-warning text-dark': complain?.complainStatus === 'UNADRESSED',
+                'bg-success': complain?.complainStatus === 'RESOLVED',
+                'bg-danger': complain?.complainStatus === 'PENDING'
               }"
-              >{{ complain.status }}</span
             >
+              {{ complain?.complainStatus }}
+            </span>
           </td>
           <td>
             <!-- Resolve Complaint Button -->
             <button
               class="btn btn-outline-success btn-sm"
-              [disabled]="complain.status === 'RESOLVED'"
+              [disabled]="complain?.complainStatus === 'RESOLVED'"
               (click)="resolveComplain(i)"
             >
-              <i class="bi bi-check-circle me-1"></i> Resolve
-            </button>
-            
-            <!-- Unlist Car Button -->
-            <button
-              class="btn btn-outline-danger btn-sm ms-2"
-              [disabled]="complain.status === 'RESOLVED'"
-              (click)="unlistCar(i)"
-            >
-              <i class="bi bi-x-circle me-1"></i> Unlist Car
+              Resolve
             </button>
           </td>
+        </tr>
+
+        <!-- Message if no complaints are found -->
+        <tr *ngIf="filteredComplains.length === 0" class="text-center">
+          <td colspan="5" class="text-muted">No complaints found.</td>
         </tr>
       </tbody>
     </table>

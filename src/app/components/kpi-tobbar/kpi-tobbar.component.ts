@@ -15,13 +15,10 @@ export class KpiTobbarComponent {
   users: number = 0;
   ratings: number = 0;
 
-  //constructor(private kpiService: KpiService) {}
-
   ngOnInit(): void {
     this.fetchKpis();
   }
 
-  // Fetch KPIs and extract revenue details
   fetchKpis(): void {
     this.totalRentals = JSON.parse(localStorage.getItem('totalRentals') || '0');
     this.carsRentedOut = JSON.parse(localStorage.getItem('carRentedOut') || '0');

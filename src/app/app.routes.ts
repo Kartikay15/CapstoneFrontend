@@ -16,6 +16,9 @@ import { FinancialsPageComponent } from './pages/financials-page/financials-page
 import { ReportsComponent } from './pages/reports/reports.component';
 import { CarListingsComponent } from './pages/car-listings/car-listings.component';
 import { AuthGuardService } from './service/auth-guard.service';
+import { SellerComponent } from './pages/seller/seller.component';
+import { ExpertPageComponent } from './pages/expert-page/expert-page.component';
+
 
 export const routes: Routes = [
     {
@@ -68,5 +71,12 @@ export const routes: Routes = [
                 path:'manage-executive', component : AdminExecutiveManageComponent
             }
         ]
+    },
+    {
+        path:'seller', component: SellerComponent, canActivate: [AuthGuardService]
+    },
+    {
+        path:'expert', component: ExpertPageComponent, canActivate: [AuthGuardService]
     }
+    
 ];

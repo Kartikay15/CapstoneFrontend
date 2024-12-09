@@ -10,9 +10,9 @@ export class EvaluationService {
 
   private getAllEvaluationApi = 'http://localhost:8081/evaluations/';
   private updateStatusVerdictApi = 'http://localhost:8081/evaluations/updateStatusVerdict/';
-   // Adjusted to include evaluation ID dynamically
+   
 
-  // Get all evaluations
+  // gets evals
   public getAllEvaluation(): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -23,7 +23,7 @@ export class EvaluationService {
     return this.httpClient.get(this.getAllEvaluationApi, httpOptions);
   }
 
-  // Method to update the status of an evaluation
+  // update status of eval
   public updateEvaluationStatus(id: number, evalStatus: string): Observable<any> {
     const updateUrl = `${this.getAllEvaluationApi}status/${id}?evalStatus=${evalStatus}`;    const httpOptions = {
       headers: new HttpHeaders({

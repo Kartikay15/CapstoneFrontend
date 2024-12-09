@@ -1,198 +1,5 @@
-<!--
 <div class="container mt-5">
     <h2 class="text-center mb-4 text-primary">Car Listings</h2>
-  
-    <table class="table table-hover table-bordered shadow-sm">
-      <thead class="bg-dark text-white">
-        <tr>
-          <th>Car ID</th>
-          <th>Car Model</th>
-          <th>Price</th>
-          <th>Status</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody *ngFor="let car of cars; let i = index">
-        <tr >
-          <td>{{ car.id }}</td>
-          <td>{{ car.car_model }}</td>
-          <td>{{ car.price | currency }}</td>
-          <td>
-            <span 
-              class="badge px-3 py-2" 
-              [ngClass]="{
-                'bg-success text-white': car.carStatus === 'SOLD',
-                'bg-warning text-dark': car.carStatus === 'LISTED',
-                'bg-danger text-white': car.carStatus === 'INVENTORY'
-              }">
-              {{ car.carStatus }}
-            </span>
-          </td>
-          <td>
-            <button (click)="toggleCarStatus(car)" class="btn btn-outline-primary btn-sm">
-              {{ car.carStatus === 'INVENTORY' ? 'List' : 'Unlist' }} Car
-            </button>
-            <button (click)="toggleCarDetails(i)" class="btn btn-outline-info btn-sm ms-2">
-              View Details
-            </button>
-          </td>
-        </tr>
-  
-        
-        <tr *ngIf="selectedCarIndex === i">
-          <td colspan="5" class="bg-light">
-            <div class="card border-0 shadow-sm mt-3">
-              <div class="card-header bg-primary text-white">
-                <h5>Car Details - {{ cars[i].car_model }}</h5>
-              </div>
-              <div class="card-body">
-                <p><strong>Car ID:</strong> {{ cars[i].id }}</p>
-                <p><strong>Model:</strong> {{ cars[i].car_model }}</p>
-                <p><strong>Purchase Year:</strong> {{ cars[i].purchase_year }}</p>
-                <p><strong>Fuel Type:</strong> {{ cars[i].fuel_type }}</p>
-                <p><strong>Body Type:</strong> {{ cars[i].body_type }}</p>
-                <p><strong>Condition:</strong> {{ cars[i].car_condition }}</p>
-                <p><strong>Price:</strong> {{ cars[i].price | currency }}</p>
-                <p><strong>Status:</strong> 
-                  <span 
-                    class="badge px-3 py-2" 
-                    [ngClass]="{
-                      'bg-success text-white': cars[i].carStatus === 'SOLD',
-                      'bg-warning text-dark': cars[i].carStatus === 'LISTED',
-                      'bg-danger text-white': cars[i].carStatus === 'INVENTORY'
-                    }">
-                    {{ cars[i].carStatus }}
-                  </span>
-                </p>
-                <p><strong>Platform:</strong> {{ cars[i].platform }}</p>
-              </div>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  -->
-<!--
-  <div class="container mt-5">
-    <h2 class="text-center mb-4 text-primary">Car Listings</h2>
-    
-    
-    <div class="mb-3">
-      <label class="form-check-label me-3" for="all">
-        <input type="checkbox" id="all" class="form-check-input" [(ngModel)]="filters.all" (change)="filterCars()"> All
-      </label>
-      <label class="form-check-label me-3" for="listed">
-        <input type="checkbox" id="listed" class="form-check-input" [(ngModel)]="filters.listed" (change)="filterCars()"> Listed
-      </label>
-      <label class="form-check-label me-3" for="inventory">
-        <input type="checkbox" id="inventory" class="form-check-input" [(ngModel)]="filters.inventory" (change)="filterCars()"> Inventory
-      </label>
-      <label class="form-check-label me-3" for="sold">
-        <input type="checkbox" id="sold" class="form-check-input" [(ngModel)]="filters.sold" (change)="filterCars()"> Sold
-      </label>
-    </div>
-  
-    <table class="table table-hover table-bordered shadow-sm">
-      <thead class="bg-dark text-white">
-        <tr>
-          <th>Car ID</th>
-          <th>Car Model</th>
-          <th>Price</th>
-          <th>Status</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody *ngFor="let car of filteredCars; let i = index">
-        <tr>
-          <td>{{ car.id }}</td>
-          <td>{{ car.car_model }}</td>
-          <td>{{ car.price | currency }}</td>
-          <td>
-            <span 
-              class="badge px-3 py-2" 
-              [ngClass]="{
-                'bg-success text-white': car.carStatus === 'SOLD',
-                'bg-warning text-dark': car.carStatus === 'LISTED',
-                'bg-danger text-white': car.carStatus === 'INVENTORY'
-              }">
-              {{ car.carStatus }}
-            </span>
-          </td>
-          <td>
-            <button 
-              *ngIf="car.carStatus !== 'SOLD'" 
-              (click)="toggleCarStatus(car)" 
-              class="btn btn-outline-primary btn-sm">
-              {{ car.carStatus === 'INVENTORY' ? 'List' : 'Unlist' }} Car
-            </button>
-            <button 
-              (click)="toggleCarDetails(i)" 
-              class="btn btn-outline-info btn-sm ms-2">
-              View Details
-            </button>
-          </td>
-        </tr>
-  
-        
-        <tr *ngIf="selectedCarIndex === i">
-            <td colspan="5" class="bg-light">
-              <div class="card border-0 shadow-sm mt-3">
-                <div class="card-header bg-primary text-white">
-                  <h5>Car Details - {{ filteredCars[i].car_model }}</h5>
-                </div>
-                <div class="card-body">
-                  <p><strong>Car ID:</strong> {{ filteredCars[i].id }}</p>
-                  <p><strong>Brand:</strong> {{ filteredCars[i].brand }}</p>
-                  <p><strong>Model:</strong> {{ filteredCars[i].car_model }}</p>
-                  <p><strong>Purchase Year:</strong> {{ filteredCars[i].purchase_year }}</p>
-                  <p><strong>Fuel Type:</strong> {{ filteredCars[i].fuel_type }}</p>
-                  <p><strong>Body Type:</strong> {{ filteredCars[i].body_type }}</p>
-                  <p><strong>Condition:</strong> {{ filteredCars[i].car_condition }}</p>
-                  <p><strong>Mileage:</strong> {{ filteredCars[i].mileage }} km/l</p>
-                  <p><strong>Price:</strong> {{ filteredCars[i].price | currency }}</p>
-                  <p><strong>Status:</strong> 
-                    <span 
-                      class="badge px-3 py-2" 
-                      [ngClass]="{
-                        'bg-success text-white': filteredCars[i].carStatus === 'SOLD',
-                        'bg-warning text-dark': filteredCars[i].carStatus === 'LISTED',
-                        'bg-danger text-white': filteredCars[i].carStatus === 'INVENTORY'
-                      }">
-                      {{ filteredCars[i].carStatus }}
-                    </span>
-                  </p>
-                  <p><strong>Platform:</strong> {{ filteredCars[i].platform }}</p>
-                </div>
-              </div>
-            </td>
-          </tr>
-          
-          
-      </tbody>
-    </table>
-  </div>
--->
-<!---->
-<div class="container mt-5">
-    <h2 class="text-center mb-4 text-primary">Car Listings</h2>
-    
-    <!-- Status Filter Checkboxes 
-    <div class="mb-3">
-      <label class="form-check-label me-3" for="all">
-        <input type="checkbox" id="all" class="form-check-input" [(ngModel)]="filters.all" (change)="filterCars()"> All
-      </label>
-      <label class="form-check-label me-3" for="listed">
-        <input type="checkbox" id="listed" class="form-check-input" [(ngModel)]="filters.listed" (change)="filterCars()"> Listed
-      </label>
-      <label class="form-check-label me-3" for="inventory">
-        <input type="checkbox" id="inventory" class="form-check-input" [(ngModel)]="filters.inventory" (change)="filterCars()"> Inventory
-      </label>
-      <label class="form-check-label me-3" for="sold">
-        <input type="checkbox" id="sold" class="form-check-input" [(ngModel)]="filters.sold" (change)="filterCars()"> Sold
-      </label>
-    </div>
--->
 
 <div class="mb-3">
     <label class="form-check-label me-3" for="all">
@@ -315,11 +122,34 @@
       </tbody>
     </table>
     
-    <!-- Pagination Buttons -->
-    <div class="d-flex justify-content-between mt-3">
-      <button class="btn btn-primary" [disabled]="page === 0" (click)="prev()">Previous</button>
-      <span class="text-muted">Page {{ page + 1 }}</span>
-      <button class="btn btn-primary" [disabled]="cars.length < size" (click)="next()">Next</button>
-    </div>
   </div>
--->
+
+  <nav aria-label="Page navigation example" class="mt-4">
+    <ul class="pagination justify-content-center">
+      <li class="page-item" [class.disabled]="page === 0">
+        <a class="page-link" (click)="prev()" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+       <li
+        class="page-item"
+        *ngFor="let pageNum of getPageNumbers()"
+        [class.active]="pageNum === page"
+      >
+        <a
+          class="page-link"
+
+          (click)="goToPage(pageNum)"
+          >{{ pageNum + 1 }}</a
+        >
+      </li>
+      <li class="page-item" [class.disabled]="cars.length < size">
+        <a class="page-link"  (click)="next()" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  
+

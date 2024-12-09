@@ -20,7 +20,7 @@ export class ExpertComponent implements OnInit {
     this.getEvaluations();
   }
 
-  // Fetch evaluations with "PROCESSING" status
+  // get processing evals
   getEvaluations(): void {
     this.evaluationService.getAllEvaluation().subscribe({
       next: (data) => {
@@ -32,23 +32,22 @@ export class ExpertComponent implements OnInit {
     });
   }
 
-  // Set the selected car for modal display
+  
   viewCarDetails(car: any): void {
     this.selectedCar = car;
-    // Now the modal or page section will display the details of this car
+   
   }
 
-  // Method to update the verdict of an evaluation
+  // verdic update
   updateEvaluation(evaluation: any): void {
-    const updatedVerdict = evaluation.evalVerdict; // The selected verdict
-    const evaluationId = evaluation.id; // The evaluation ID
-    const evalStatus = 'DONE'; // Status is set to DONE
+    const updatedVerdict = evaluation.evalVerdict; 
+    const evaluationId = evaluation.id; 
+    const evalStatus = 'DONE'; 
   
-    // Call the service to update both status and verdict
+    
     this.evaluationService.updateStatusAndVerdict(evaluationId, evalStatus, updatedVerdict).subscribe({
       next: (updatedEvaluation) => {
         console.log('Evaluation updated:', updatedEvaluation);
-        // Refresh the evaluations list after update
         this.getEvaluations();
       },
       error: (err) => {

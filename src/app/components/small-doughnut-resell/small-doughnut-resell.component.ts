@@ -43,9 +43,19 @@ export class SmallDoughnutResellComponent {
       cutout: '60%',
       plugins: {
         legend: {
-          display: true,
+          display: false,
           labels: {
             color: textColor
+          }
+        }
+      },
+      tooltip: { // Configure tooltips
+        enabled: true,
+        callbacks: {
+          label: function(context:any) {
+            const value = context.raw.value; // Value of segment
+            const label = context.label; // Name of segment
+            return `${label}: ${value}`;
           }
         }
       }
@@ -56,6 +66,7 @@ export class SmallDoughnutResellComponent {
   updateChartData(): void {
     const documentStyle = getComputedStyle(document.documentElement);
     this.data = {
+      labels: ['Cars Sold', 'Listed Cars', 'Resell Inventory'],
       
       datasets: [
         {

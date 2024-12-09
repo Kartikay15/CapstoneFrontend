@@ -27,6 +27,7 @@ export class SmallDoughnutComponent {cancelledBookings: number = 0;
     fetchKpis(): void {
         this.rentalInventory = JSON.parse(localStorage.getItem('rentalInventory') || '0');
         this.carRentedOut = JSON.parse(localStorage.getItem('carRentedOut') || '0');
+        this.rentalInventory = this.rentalInventory - this.carRentedOut;
        
       
        this.updateChartData();

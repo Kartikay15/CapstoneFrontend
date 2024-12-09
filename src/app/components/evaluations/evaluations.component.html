@@ -43,7 +43,7 @@
                     <td class="text-end">{{ evaluation.valuation || 'N/A' }}</td>
                     <td class="text-center">
                         <button *ngIf="evaluation.evalstatus === 'PENDING'" class="btn btn-primary btn-sm" (click)="assignEvaluation(evaluation)">
-                            Assign to Expert
+                            Accept
                         </button>
                         <button class="btn btn-info btn-sm" (click)="viewCarDetails(evaluation.car)">
                             View Car Details

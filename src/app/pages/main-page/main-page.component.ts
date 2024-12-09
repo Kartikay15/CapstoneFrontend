@@ -19,7 +19,7 @@ export class MainPageComponent implements OnInit {
     this.fetchKpis();
   }
 
-  // Fetch KPIs and extract revenue details
+  // refresh kpis on loading
   fetchKpis(): void {
     this.kpiService.getKpis().subscribe({
       next: (data) => {

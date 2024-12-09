@@ -38,7 +38,7 @@ export class EvaluationsComponent {
         next: () => {
           // Update the status locally after the successful update
           evaluation.evalstatus = 'PROCESSING';
-          alert(`Evaluation ${evaluation.id} has been updated to PROCESSING.`);
+          //alert(`Evaluation ${evaluation.id} has been updated to PROCESSING.`);
         },
         error: (err) => {
           console.error('Failed to assign evaluation:', err);
